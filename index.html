@@ -144,21 +144,21 @@
                     <div class="form-group row">
                         <div class="col-sm-10 offset-md-1">
                             <div class="form-group row">
-                                <label for="nome" class="col-sm-5 col-form-label"> Nome do pet: </label>
+                                <label for="nomePet" class="col-sm-5 col-form-label"> Nome do pet: </label>
                                 <div class="col-sm-7">
-                                    <input type="text" id="nome" class="form-control">
+                                    <input type="text" id="nomePet" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row pt-2">
-                                <label for="pet_idade" class="col-sm-5 col-form-label"> Idade aproximada: </label>
+                                <label for="idadePet" class="col-sm-5 col-form-label"> Idade aproximada: </label>
                                 <div class="col-sm-7">
-                                    <input type="text" id="pet_idade" class="form-control">
+                                    <input type="text" id="idadePet" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row pt-2">
-                                <label for="sexo_pet" class="col-sm-5 col-form-label">Gênero:</label>
+                                <label for="petSexo" class="col-sm-5 col-form-label">Gênero:</label>
                                 <div class="col-sm-7">
-                                    <select name="sexo_pet" id="sexo_pet" class="form-control">
+                                    <select name="petSexo" id="petSexo" class="form-control">
                                         <option value="">Selecionar</option>
                                         <option value="Macho">Macho</option>
                                         <option value="Fêmea">Fêmea</option>
@@ -166,33 +166,33 @@
                                 </div>
                             </div>
                             <div class="form-group row pt-2">
-                                <label for="local_pet" class="col-sm-5 col-form-label">Local do desaparecimento:</label>
+                                <label for="localPet" class="col-sm-5 col-form-label">Local do desaparecimento:</label>
                                 <div class="col-sm-7">
-                                    <input type="text" id="local_pet" class="form-control">
+                                    <input type="text" id="localPet" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row pt-2">
-                                <label for="contato_pet" class="col-sm-5 col-form-label">Contato:</label>
+                                <label for="contatoPet" class="col-sm-5 col-form-label">Contato:</label>
                                 <div class="col-sm-7">
-                                    <input type="text" id="contato_pet" class="form-control">
+                                    <input type="text" id="contatoPet" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row pt-2">
-                                <label for="img_pet" class="col-sm-5 col-form-label">Foto do pet:</label>
+                                <label for="imgPet" class="col-sm-5 col-form-label">Foto do pet:</label>
                                 <div class="col-sm-7">
-                                    <input class="form-control" type="text" id="img_pet">
+                                    <input class="form-control" type="file" id="imgCardPet" onchange="converterImagem(this.id)">
                                 </div>
                             </div>
                             <div class="form-group row pt-2">
-                                <label for="obs_pet" class="col-sm-5 col-form-label">Observações:</label>
+                                <label for="obsPet" class="col-sm-5 col-form-label">Observações:</label>
                                 <div class="col-sm-7">
-                                    <textarea type="text" id="obs_pet" class="form-control" rows="3"></textarea>
+                                    <textarea type="text" id="obsPet" class="form-control" rows="3"></textarea>
                                 </div>
                             </div>
                             <div class="form-group row pt-2">
                                 <div class="col-sm-9"></div>
                                 <div class="col-sm-2 pb-2">
-                                    <button type="button" class="btn btn-success btn-md" style="background-color:#806abd; border: none;" onclick="gerarPdf()">Cadastrar!</button>
+                                    <button type="button" class="btn btn-success btn-md" style="background-color:#806abd; border: none;" onclick="crudPet()">Cadastrar!</button>
                                 </div>
                             </div>
                         </div>
@@ -239,9 +239,9 @@
                                 </div>
                             </div>
                             <div class="form-group row pt-2">
-                                <label for="img_pet" class="col-sm-5 col-form-label">Foto do pet:</label>
+                                <label for="" class="col-sm-5 col-form-label">Foto do pet:</label>
                                 <div class="col-sm-7">
-                                    <input class="form-control" type="text" id="img_pet">
+                                    <input class="form-control" type="text" id="ImgCardPetDoacao" onchange="converterImagem(this.id)">
                                 </div>
                             </div>
                             <div class="form-group row pt-2">
@@ -264,7 +264,7 @@
     </div>
     <div id="lista-animais" class="pb-5 pt-4">
         <div class="container">
-            <div class="row">
+            <div class="row" id="conteudo-cards">
                 <div class="col-sm-3 pt-2">
                   <div class="card text-center">
                     <img class="card-img-top" src="img/bot-gato-1.jpg" alt="Card image cap" height="250px" width="250px">
@@ -426,7 +426,7 @@
                             <div class="form-group row pt-2">
                                 <label for="img_pet" class="col-sm-5 col-form-label">Foto do pet:</label>
                                 <div class="col-sm-7">
-                                    <input class="form-control" type="file" id="img_pet" onchange="converterImagem()">
+                                    <input class="form-control" type="file" id="img_pet" onchange="converterImagem(this.id)">
                                 </div>
                             </div>
                             <div class="form-group row pt-2">
