@@ -47,7 +47,6 @@ router.post('/', upload.single('fotoPet'), (req, res) => {
     }
     console.log(req.body.fotoPetFantasma)
     new Pet(novoCadastro).save().then(()=>{
-        console.log("Cadastrado com sucesso")
         res.redirect("/homepage")
     }).catch((err) => {
         console.log("Erro na criação: " + err)

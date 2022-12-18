@@ -12,7 +12,7 @@ const passport = require('passport')
 
     router.post('/', (req, res, next) => {
         passport.authenticate("local", {
-            successRedirect: "/logged",
+            successRedirect: "/homepage",
             failureRedirect: "/login",
             failureFlash: true
         })(req, res, next)

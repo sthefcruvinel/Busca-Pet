@@ -1,8 +1,8 @@
 
-<div class="container col-md-4" style="margin-top: 10%;">
+<div class="col-md-10 offset-md-1" style="margin-top: 10%;">
     <div class="row pb-5">
-        <div class="col-md-12 pt-4 pb-5" style="border-radius: 10px; background-color:#fff; box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.2);">
-            <div class="container text-center">
+        <div class="col-md-3 pt-4 pb-5" style="border-radius: 10px; background-color:#fff; box-shadow: 0px 0px 8px 1px rgba(166, 160, 160, 0.2);">
+            <div class="text-center">
                 <img src="/img/avatar.png" alt="" style="width: 130px;">
                 {{#each usuarios}}
                     <h5>{{nome}}</h5>
@@ -11,10 +11,18 @@
                 {{else}}
                 {{/each}}
                 <div class="pt-4">
-                    <a href="/homepage"><button class="btn btn-danger">Sair</button></a>
+                    <a href="/logout"><button class="btn btn-danger">Sair</button></a>
                 </div>
+            </div>
+        </div>
+        <div class="col-md-7 offset-md-1" style="position: relative; border-radius: 10px; background-color:#fff; box-shadow: 0px 0px 8px 1px rgba(200, 192, 192, 0.2);">
+            <div class="container offset-md-3 pt-5" style="margin-top: 23%;">
+                <span class="alert alert-warning" style="position: absolute;" role="alert">
+                    Sua conta ainda não possui pets cadastrados!
+                </span>
             </div>
         </div>
     </div>
 </div>
+
 

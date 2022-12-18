@@ -1,23 +1,58 @@
 <script>
-    function cadastroAnimal(){
+    function cadastroAnimalLogado(){
         var cadAnimalDesaparecido = document.getElementById('novo-cadastro');
         cadAnimalDesaparecido.style.display = 'flex';
+    }
+    function cadastroAnimalWarn(){
+        var alert = document.getElementById('alert-login');
+        alert.style.display = 'flex';
     }
     function teste(){
         var foto = document.getElementById('fotoPet').value;
         var fotoFantasma = document.getElementById('fotoPetFantasma');
         str = foto
         nomeImagem = str.slice(12)
-        caminho = "uploads/"+nomeImagem
+        caminho = "img/"+nomeImagem
         fotoFantasma.value = caminho;
     }
+    function phoneMask(event) {
+    let key = event.key;
+    let phone = event.target.value.replace(/\D+/g, ""); /* ignora tudo que não é número */
+ 
+    if (/^[0-9]$/i.test(key)) { 
+        phone = phone + key; 
+        let size = phone.length;
+
+        if (size > 10) {
+            phone = phone.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3"); /* if faz a testagem do tamanho do número para aplicar a máscara */
+        }else if (size > 5) {
+            phone = phone.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3"); 
+        }else if (size > 2) {
+            phone = phone.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
+        }else {
+            phone = phone.replace(/^(\d*)/, "($1");
+        }
+        event.target.value = phone;
+    } 
+
+    if (!["Backspace", "Delete"].includes(key)) { /* retorna falso para tudo que não é número ou backspace ou delete */
+        return false;
+    }
+}
 </script>
 <div class="container pt-5 pb-5 d-flex justify-content-center" style="margin-left: 13%;">
     <div class="row col-md-9">
-        <div class="col-md-3 divCadastro" onclick="cadastroAnimal()">
-            <img src="img/cadastrar-animais.png" class="img-fluid" alt="Imagem responsiva" width="170px">
-            <h5 style="font-family: 'Ubuntu', sans-serif;"> Cadastrar animal </h5>
-        </div>
+        {{#if user}}
+            <div class="col-md-3 divCadastro" onclick="cadastroAnimalLogado()">
+                <img src="img/cadastrar-animais.png" class="img-fluid" alt="Imagem responsiva" width="170px">
+                <h5 style="font-family: 'Ubuntu', sans-serif;"> Cadastrar animal </h5>
+            </div>
+        {{else}}
+            <div class="col-md-3 divCadastro" onclick="cadastroAnimalWarn()">
+                <img src="img/cadastrar-animais.png" class="img-fluid" alt="Imagem responsiva" width="170px">
+                <h5 style="font-family: 'Ubuntu', sans-serif;"> Cadastrar animal </h5>
+            </div>
+        {{/if}}
         <div class="col-md-3">
             <img src="img/lista-animais.png" class="img-fluid" alt="Imagem responsiva" width="170px">
             <h5 style="font-family: 'Ubuntu', sans-serif;"> Ver lista de animais</h5>
@@ -28,98 +63,106 @@
         </div>
     </div>   
 </div>
-
+{{#if user}}
 <div class="pb-1">
     <div style="background-color:#c0b4cc;">
-    <section class="pt-4 pb-4" id="novo-cadastro" style="display: none;">
-        <div class="col-md-6 offset-md-3" style="background-color:#fff; border-radius: 10px; box-shadow: 0px 0px 1px 1px #fff;">
-            <div class="row">
-                <div class="mt-2 pt-3 col-md-8 offset-md-4">
-                    <h4 style="font-family: 'Ubuntu', sans-serif;">Cadastrar animal</h4><br>
+        <section class="pt-4 pb-4" id="novo-cadastro" style="display: none;">
+            <div class="col-md-6 offset-md-3" style="background-color:#fff; border-radius: 10px; box-shadow: 0px 0px 1px 1px #fff;">
+                <div class="row">
+                    <div class="mt-2 pt-3 col-md-8 offset-md-4">
+                        <h4 style="font-family: 'Ubuntu', sans-serif;">Cadastrar animal</h4><br>
+                    </div>
                 </div>
-            </div>
-            <div class="container ml-2">
-                <form action="" method="POST" enctype="multipart/form-data">
-                    <div class="form-group row">
-                        <div class="col-sm-10 offset-md-1">
-                            <div class="form-group row">
-                                <label for="nomePet" class="col-sm-5 col-form-label"> Nome do pet: </label>
-                                <div class="col-sm-7">
-                                    <input type="text" id="nomePet" name="nomePet" class="form-control">
+                <div class="container ml-2">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        <div class="form-group row">
+                            <div class="col-sm-10 offset-md-1">
+                                <div class="form-group row">
+                                    <label for="nomePet" class="col-sm-5 col-form-label"> Nome do pet: </label>
+                                    <div class="col-sm-7">
+                                        <input type="text" id="nomePet" name="nomePet" class="form-control">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row pt-2">
-                                <label for="idadePet" class="col-sm-5 col-form-label"> Idade aproximada: </label>
-                                <div class="col-sm-7">
-                                    <input type="text" id="idadePet" name="idadePet" class="form-control">
+                                <div class="form-group row pt-2">
+                                    <label for="idadePet" class="col-sm-5 col-form-label"> Idade aproximada: </label>
+                                    <div class="col-sm-7">
+                                        <input type="text" id="idadePet" name="idadePet" class="form-control">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row pt-2">
-                                <label for="petSexo" class="col-sm-5 col-form-label">Gênero:</label>
-                                <div class="col-sm-7">
-                                    <select name="petSexo" id="petSexo" class="form-control">
-                                        <option value="">Selecionar</option>
-                                        <option value="Macho">Macho</option>
-                                        <option value="Fêmea">Fêmea</option>
-                                    </select>
+                                <div class="form-group row pt-2">
+                                    <label for="petSexo" class="col-sm-5 col-form-label">Gênero:</label>
+                                    <div class="col-sm-7">
+                                        <select name="petSexo" id="petSexo" class="form-control">
+                                            <option value="">Selecionar</option>
+                                            <option value="Macho">Macho</option>
+                                            <option value="Fêmea">Fêmea</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row pt-2">
-                                <label for="petSexo" class="col-sm-5 col-form-label">Status:</label>
-                                <div class="col-sm-7">
-                                    <select name="statusPet" id="statusPet" class="form-control">
-                                        <option value="">Selecionar</option>
-                                        <option value="Desaparecido">Desaparecido</option>
-                                        <option value="Para adoção">Para adoção</option>
-                                    </select>
+                                <div class="form-group row pt-2">
+                                    <label for="petSexo" class="col-sm-5 col-form-label">Status:</label>
+                                    <div class="col-sm-7">
+                                        <select name="statusPet" id="statusPet" class="form-control">
+                                            <option value="">Selecionar</option>
+                                            <option value="Desaparecido">Desaparecido</option>
+                                            <option value="Para adoção">Para adoção</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row pt-2">
-                                <label for="localPet" class="col-sm-5 col-form-label">Endereço:</label>
-                                <div class="col-sm-7">
-                                    <input type="text" id="localPet" name="localPet" class="form-control">
+                                <div class="form-group row pt-2">
+                                    <label for="localPet" class="col-sm-5 col-form-label">Endereço:</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" id="localPet" name="localPet" class="form-control">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row pt-2">
-                                <label for="contatoPet" class="col-sm-5 col-form-label">Contato:</label>
-                                <div class="col-sm-7">
-                                    <input type="text" id="contatoPet" name="contatoPet" class="form-control">
+                                <div class="form-group row pt-2">
+                                    <label for="contatoPet" class="col-sm-5 col-form-label">Contato:</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" id="contatoPet" name="contatoPet" class="form-control" maxlength="15" onkeydown="return phoneMask(event)">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row pt-2">
-                                <label for="imgPet" class="col-sm-5 col-form-label">Foto do pet:</label>
-                                <div class="col-sm-7">
-                                    <input class="form-control" type="file" name="fotoPet" id="fotoPet" onchange="teste()">
-                                    <input class="form-control" type="text" style="display: none;" name="fotoPetFantasma" id="fotoPetFantasma">
+                                <div class="form-group row pt-2">
+                                    <label for="imgPet" class="col-sm-5 col-form-label">Foto do pet:</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" type="file" name="fotoPet" id="fotoPet" onchange="teste()">
+                                        <input class="form-control" type="text" style="display: none;" name="fotoPetFantasma" id="fotoPetFantasma">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row pt-2">
-                                <label for="obsPet" class="col-sm-5 col-form-label">Observações:</label>
-                                <div class="col-sm-7">
-                                    <textarea type="text" id="obsPet" name="obsPet" class="form-control" rows="3"></textarea>
+                                <div class="form-group row pt-2">
+                                    <label for="obsPet" class="col-sm-5 col-form-label">Observações:</label>
+                                    <div class="col-sm-7">
+                                        <textarea type="text" id="obsPet" name="obsPet" class="form-control" rows="3" maxlength="60"></textarea>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row pt-2">
-                                <div class="col-sm-9"></div>
-                                <div class="col-sm-2 pb-2">
-                                    <button type="submit" class="btn btn-success btn-md" style="background-color:#806abd; border: none;">Cadastrar!</button>
+                                <div class="form-group row pt-2">
+                                    <div class="col-sm-9"></div>
+                                    <div class="col-sm-2 pb-2">
+                                        <button type="submit" class="btn btn-success btn-md" style="background-color:#806abd; border: none;">Cadastrar!</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row pt-2">
-                                
+                                <div class="form-group row pt-2">                                
                                     {{#each erros}}
                                     <div class="alert alert-warning" role="alert">
                                         {{texto}}
                                     </div>
                                     {{else}}
-                                    {{/each}}
-                                
+                                    {{/each}}                                
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </form>
-            </div>   
+                    </form>
+                </div>   
+            </div>
+        </section>
+    </div>
+</div>
+{{else}}
+    <div class="container offset-md-4 pb-4" style="display: none;" id="alert-login">
+        <div class="alert alert-warning text-center" role="alert">
+            <span>É necessário fazer o login para cadastrar um animal!</span><br>
+            <a href="/login" style="text-decoration: none; color: inherit;">
+                Faça login clicando aqui!
+            </a>
         </div>
-    </section>
-</div>
-</div>
+    </div>
+{{/if}}

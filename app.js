@@ -4,11 +4,11 @@
     const bodyParser = require("body-parser")
     const app = express()
     const mongoose = require('mongoose')
-    const logged = require("./routes/logged")
     const homepage = require("./routes/homepage")
     const login = require("./routes/login")
     const account = require("./routes/account")
     const register = require("./routes/register")
+    const logout = require("./routes/logout")
     const path = require("path")
     const session = require('express-session')
     const flash = require('connect-flash')
@@ -40,6 +40,7 @@
             res.locals.success_msg = req.flash("success_msg")
             res.locals.error_msg = req.flash("error_msg")
             res.locals.error = req.flash("error")
+            res.locals.user = req.user || null
             next()
         })
     //body Parser
@@ -61,11 +62,11 @@
         app.use(express.static(path.join(__dirname, "public")))
 
 //rotas
-    app.use('/logged', logged) //usuário logado
     app.use('/login', login) //tela de login
     app.use('/homepage', homepage) //tela inicial
     app.use('/account', account) //tela inicial
     app.use('/register', register) //tela inicial
+    app.use('/logout', logout) //tela inicial
     
 //outros
 const PORT = 8081
