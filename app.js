@@ -8,10 +8,22 @@
     const homepage = require("./routes/homepage")
     const login = require("./routes/login")
     const account = require("./routes/account")
+    const register = require("./routes/register")
     const path = require("path")
     const session = require('express-session')
     const flash = require('connect-flash')
+    const bcrypt = require('bcryptjs')
+    const multer = require('multer')
+    const passport = require('passport')
+    const upload = multer({ dest: 'uploads/' })
+    require("./config/auth")(passport)
 
+    //desativando o CORS
+        app.use(function(req, res, next) {
+            res.header('Access-Control-Allow-Origin', '*');
+            res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+            next();
+        });
 //configurações
     //session
         app.use(session({
@@ -19,12 +31,15 @@
             resave: true,
             saveUninitialized: true
         }))
+        app.use(passport.initialize())
+        app.use(passport.session())
     //flash
         app.use(flash())
     //middleware
         app.use((req, res, next) => {
             res.locals.success_msg = req.flash("success_msg")
             res.locals.error_msg = req.flash("error_msg")
+            res.locals.error = req.flash("error")
             next()
         })
     //body Parser
@@ -50,6 +65,7 @@
     app.use('/login', login) //tela de login
     app.use('/homepage', homepage) //tela inicial
     app.use('/account', account) //tela inicial
+    app.use('/register', register) //tela inicial
     
 //outros
 const PORT = 8081

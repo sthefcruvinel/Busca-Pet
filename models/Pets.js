@@ -23,6 +23,10 @@ const Pets = new Schema({
         type: String,
         required: true
     },
+    imagem:{
+        type: String,
+        required: true
+    },
     obs: {
         type: String,
         required: false,

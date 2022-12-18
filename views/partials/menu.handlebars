@@ -3,6 +3,14 @@
         var cadAnimalDesaparecido = document.getElementById('novo-cadastro');
         cadAnimalDesaparecido.style.display = 'flex';
     }
+    function teste(){
+        var foto = document.getElementById('fotoPet').value;
+        var fotoFantasma = document.getElementById('fotoPetFantasma');
+        str = foto
+        nomeImagem = str.slice(12)
+        caminho = "uploads/"+nomeImagem
+        fotoFantasma.value = caminho;
+    }
 </script>
 <div class="container pt-5 pb-5 d-flex justify-content-center" style="margin-left: 13%;">
     <div class="row col-md-9">
@@ -21,7 +29,8 @@
     </div>   
 </div>
 
-<div style="background-color:#c0b4cc;">
+<div class="pb-1">
+    <div style="background-color:#c0b4cc;">
     <section class="pt-4 pb-4" id="novo-cadastro" style="display: none;">
         <div class="col-md-6 offset-md-3" style="background-color:#fff; border-radius: 10px; box-shadow: 0px 0px 1px 1px #fff;">
             <div class="row">
@@ -30,7 +39,7 @@
                 </div>
             </div>
             <div class="container ml-2">
-                <form action="" method="POST">
+                <form action="" method="POST" enctype="multipart/form-data">
                     <div class="form-group row">
                         <div class="col-sm-10 offset-md-1">
                             <div class="form-group row">
@@ -80,7 +89,8 @@
                             <div class="form-group row pt-2">
                                 <label for="imgPet" class="col-sm-5 col-form-label">Foto do pet:</label>
                                 <div class="col-sm-7">
-                                    <input class="form-control" type="file" id="imgCardPet" name="imgCardPet" onchange="converterImagem(this.id)">
+                                    <input class="form-control" type="file" name="fotoPet" id="fotoPet" onchange="teste()">
+                                    <input class="form-control" type="text" style="display: none;" name="fotoPetFantasma" id="fotoPetFantasma">
                                 </div>
                             </div>
                             <div class="form-group row pt-2">
@@ -92,8 +102,18 @@
                             <div class="form-group row pt-2">
                                 <div class="col-sm-9"></div>
                                 <div class="col-sm-2 pb-2">
-                                    <button type="submit" class="btn btn-success btn-md"style="background-color:#806abd; border: none;">Cadastrar!</button>
+                                    <button type="submit" class="btn btn-success btn-md" style="background-color:#806abd; border: none;">Cadastrar!</button>
                                 </div>
+                            </div>
+                            <div class="form-group row pt-2">
+                                
+                                    {{#each erros}}
+                                    <div class="alert alert-warning" role="alert">
+                                        {{texto}}
+                                    </div>
+                                    {{else}}
+                                    {{/each}}
+                                
                             </div>
                         </div>
                     </div>
@@ -101,4 +121,5 @@
             </div>   
         </div>
     </section>
+</div>
 </div>
