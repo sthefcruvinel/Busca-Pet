@@ -1,0 +1,50 @@
+<div class="container col-md-10 offset-md-2 pb-5" style="margin-top: 13%;">
+    <div class="row">
+        <div class="col-md-5" style="background-color:#fff; border-radius: 10px; box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.2);">
+            <h4 class="pt-3 col-md-5 offset-md-4">Já é cliente? Acesse sua conta</h4>
+            <div class="container col-md-8 pt-5">
+                <input class="form-control" type="text" placeholder="E-mail">
+            </div>
+            <div class="container col-md-8 pt-3">
+                <input class="form-control" type="password" placeholder="Senha">
+            </div>
+            <div class="container col-md-8 pt-3">
+                <button type="button" class="form-control" style="background-color:#77D353; color:#fff; border: none;">Entrar</button>
+            </div>
+            <div class="container col-md-9 offset-md-5 pt-3">
+                <a href="" style="text-decoration: none;">
+                    <span style="margin-left: 9%;">Esqueceu sua senha?</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-5" style="background-color:#fff; border-radius: 10px; margin-left: 1%; box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.2);">
+            <h4 class="pt-3 col-md-5 offset-md-4">Novo por aqui? Crie sua conta</h4>
+            <form action="" method="POST">
+                <div class="container col-md-8 pt-5">
+                    <input class="form-control" name="usuarioNome" type="text" placeholder="Nome completo">
+                </div>
+                <div class="container col-md-8 pt-2">
+                    <input class="form-control" name="usuarioContato" type="text" placeholder="Telefone para contato">
+                </div>
+                <div class="container col-md-8 pt-2">
+                    <input class="form-control" name="usuarioEmail" type="text" placeholder="E-mail">
+                </div>
+                <div class="container col-md-8 pt-2">
+                    <input class="form-control" name="usuarioSenha" type="password" placeholder="Senha">
+                </div>
+                <div class="container col-md-8 pt-2">
+                    <input class="form-control" name="usuarioSenhaValida" type="password" placeholder="Confirme sua senha">
+                </div>
+                <div class="container col-md-8 pt-3 pb-4">
+                    <button type="submit" class="form-control" style="background-color:#77D353; color:#fff; border: none;">Entrar</button>
+                </div>
+            </form>
+            {{#each erros}}
+                <div class="alert alert-warning" role="alert">
+                    {{texto}}
+                </div>
+            {{else}}
+            {{/each}}
+        </div>
+    </div>
+</div>

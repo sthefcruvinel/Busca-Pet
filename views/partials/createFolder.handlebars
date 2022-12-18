@@ -1,0 +1,88 @@
+<script>
+    function gerarPdf(){
+        var petNome = document.getElementById('pet_nome').value;
+        var petLocal = document.getElementById('local_pet').value;
+        var petContato = document.getElementById('contato_pet').value;
+        var petObs = document.getElementById('obs_pet').value;
+        var doc = new jsPDF();
+        doc.setFontSize(35);
+        doc.text(`PROCURA-SE ${petNome.toUpperCase()}`, 105, 35, null, null, "center");
+        doc.text(`Desapareceu próximo a(o)`, 105, 55, null, null, "center");
+        doc.text(`${petLocal}`, 105, 70, null, null, "center");
+        doc.addImage(base64String, 'JPG', 30, 70, 150, 150);
+        doc.text(`Se você viu ${petNome} por aí,`, 105, 230, null, null, "center");
+        doc.text(`entre em contato no telefone`, 105, 245, null, null, "center");
+        doc.text(`${petContato}`, 105, 260, null, null, "center");
+        doc.save(petNome + '.pdf');
+    }
+
+    var base64String; //variável global que contém string da imagem em base64 
+    var imgResult; //variável global que contém string da imagem sem regex (para inserir novamente no html)
+
+    function converterImagem(){  
+        var f = document.getElementById('img_pet').files;
+        var file = f[0]
+        var reader = new FileReader();
+        reader.onload = function () {
+            imgResult = reader.result
+            base64String = reader.result.replace("data:", "")
+                .replace(/^.+,/, "");
+            imageBase64Stringsep = base64String; 
+        }
+        reader.readAsDataURL(file);
+    }
+</script>
+
+<div style="background-color:#806abd;" id="cartazes">
+        <section class="pt-5 pb-5">
+            <div class="col-md-6 offset-md-3" style="background-color:#fff; border-radius: 10px; box-shadow: 0px 0px 1px 1px #c3c3c3;">
+                <div class="row">
+                    <div class="mt-2 pt-3 col-md-8 offset-md-2">
+                        <h4 style="font-family: 'Ubuntu', sans-serif;">Precisa criar um cartaz de desaparecido para o seu pet? O Busca Pet cria para você!</h4><br>
+                    </div>
+                </div>
+                <div class="container ml-2">
+                    <div class="form-group row">
+                        <div class="col-sm-10 offset-md-1">
+                            <div class="form-group row">
+                                <label for="pet_nome" class="col-sm-5 col-form-label"> Nome do pet: </label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="pet_nome" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row pt-2">
+                                <label for="local_pet" class="col-sm-5 col-form-label">Local do desaparecimento:</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="local_pet" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row pt-2">
+                                <label for="contato_pet" class="col-sm-5 col-form-label">Contato:</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="contato_pet" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row pt-2">
+                                <label for="img_pet" class="col-sm-5 col-form-label">Foto do pet:</label>
+                                <div class="col-sm-7">
+                                    <input class="form-control" type="file" id="img_pet" onchange="converterImagem()">
+                                </div>
+                            </div>
+                            <div class="form-group row pt-2">
+                                <label for="obs_pet" class="col-sm-5 col-form-label">Observações:</label>
+                                <div class="col-sm-7">
+                                    <textarea type="text" id="obs_pet" class="form-control" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row pt-2">
+                                <div class="col-sm-9"></div>
+                                <div class="col-sm-2 pb-2">
+                                    <button type="button" class="btn btn-success btn-md" style="background-color:#77D353; border: none;" onclick="gerarPdf()">Gerar&nbsp;cartaz!</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+            </div>
+        </section>
+    </div>

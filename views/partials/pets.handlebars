@@ -1,0 +1,38 @@
+<div id="lista-animais" class="pb-5 pt-4">
+    <style>
+        .card{
+            border: none;
+            background-color: #806abd;
+            color: #fff;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        .list-group-item{
+            background-color: #806abd;
+            color: #fff;
+            border-color: #fff;
+        }
+    </style>
+    <div class="container">
+        <div class="row" id="conteudo-cards">
+                {{#each pets}}
+                    <div class="col-sm-3 pt-2">
+                        <div class="card text-center">
+                        <img class="card-img-top" src="img/bot-gato-1.jpg" alt="Card image cap" height="250px" width="250px">
+                        <div class="card-body">
+                            <h5 class="card-title">{{this.nome}}, {{this.idade}}</h5>
+                            <p class="card-text">{{obs}}</p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">{{genero}}</li>
+                                <li class="list-group-item">{{localDesaparecimento}}</li>
+                                <li class="list-group-item">{{contato}}</li>
+                                <li class="list-group-item">{{status}}</li>
+                            </ul>
+                        </div>
+                        </div>
+                    </div>
+                {{else}}
+
+                {{/each}}
+        </div>
+    </div>
+</div>

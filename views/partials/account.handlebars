@@ -1,0 +1,20 @@
+
+<div class="container col-md-4" style="margin-top: 10%;">
+    <div class="row pb-5">
+        <div class="col-md-12 pt-4 pb-5" style="border-radius: 10px; background-color:#fff; box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.2);">
+            <div class="container text-center">
+                <img src="/img/avatar.png" alt="" style="width: 130px;">
+                {{#each usuarios}}
+                    <h5>{{nome}}</h5>
+                    <h6>{{contato}}</h6>
+                    <h6>{{email}}</h6>
+                {{else}}
+                {{/each}}
+                <div class="pt-4">
+                    <a href="/homepage"><button class="btn btn-danger">Sair</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
