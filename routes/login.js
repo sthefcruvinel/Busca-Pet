@@ -6,11 +6,11 @@ const Usuario = mongoose.model("usuarios")
 const bcrypt = require('bcryptjs')
 const passport = require('passport')
 
-    router.get('/', (req, res) => {
+    router.get('/login', (req, res) => {
         res.render("login/index")
     })
 
-    router.post('/', (req, res, next) => {
+    router.post('/login', (req, res, next) => {
         passport.authenticate("local", {
             successRedirect: "/homepage",
             failureRedirect: "/login",

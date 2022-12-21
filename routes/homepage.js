@@ -25,7 +25,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-router.get('/', (req, res) => {
+router.get('/homepage', (req, res) => {
     Pet.find().lean().then((pets) => {
         res.render("homepage/index", {pets: pets})
     }).catch((err) => {
@@ -34,7 +34,9 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post('/', upload.single('fotoPet'), (req, res) => {
+router.post('/homepage/:id', upload.single('fotoPet'), (req, res) => {
+    var string = req.params.id
+    id = string.slice(26, 50)
     const novoCadastro = {
         nome: req.body.nomePet,
         genero: req.body.petSexo,
@@ -43,7 +45,8 @@ router.post('/', upload.single('fotoPet'), (req, res) => {
         contato: req.body.contatoPet,
         imagem: req.body.fotoPetFantasma,
         obs: req.body.obsPet,
-        status: req.body.statusPet
+        status: req.body.statusPet,
+        usuario: id
     }
     console.log(req.body.fotoPetFantasma)
     new Pet(novoCadastro).save().then(()=>{

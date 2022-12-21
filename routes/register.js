@@ -5,11 +5,11 @@ require("../models/Usuario")
 const Usuario = mongoose.model("usuarios")
 const bcrypt = require('bcryptjs')
 
-router.get('/', (req, res) => {
+router.get('/register', (req, res) => {
     res.render("register/index")
 })
 
-router.post('/', (req, res) => {
+router.post('/register', (req, res) => {
     var erros = []
 
     if (!req.body.usuarioNome || typeof req.body.usuarioNome == undefined || req.body.usuarioNome == null){

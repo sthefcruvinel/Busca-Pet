@@ -17,6 +17,7 @@
     const passport = require('passport')
     const upload = multer({ dest: 'uploads/' })
     require("./config/auth")(passport)
+    var favicon = require('serve-favicon');
 
     //desativando o CORS
         app.use(function(req, res, next) {
@@ -24,6 +25,7 @@
             res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
             next();
         });
+        app.use(favicon(path.join(__dirname, 'public', 'img', 'favicon.ico')))
 //configurações
     //session
         app.use(session({
@@ -62,14 +64,14 @@
         app.use(express.static(path.join(__dirname, "public")))
 
 //rotas
-    app.use('/login', login) //tela de login
-    app.use('/homepage', homepage) //tela inicial
-    app.use('/account', account) //tela inicial
-    app.use('/register', register) //tela inicial
-    app.use('/logout', logout) //tela inicial
+    app.use(login) //tela de login
+    app.use(homepage) //tela inicial
+    app.use(account) //tela minha conta
+    app.use(register) //tela de registro
+    app.use(logout) //tela inicial
     
 //outros
-const PORT = 8081
+const PORT = 3000
 app.listen(PORT, ()=>{
     console.log("Servidor conectado!")
 })

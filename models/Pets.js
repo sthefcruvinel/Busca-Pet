@@ -37,8 +37,8 @@ const Pets = new Schema({
         required: true,
     },
     usuario: {
-        type: Number,
-        required: false
+        type: String,
+        required: true
     }
 })
 

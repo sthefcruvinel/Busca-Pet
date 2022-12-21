@@ -1,25 +1,59 @@
-
+<style>
+        .card{
+        border: none;
+            background-color: #806abd;
+            color: #fff;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        .list-group-item{
+            background-color: #806abd;
+            color: #fff;
+            border-color: #fff;
+        }
+</style>
 <div class="col-md-10 offset-md-1" style="margin-top: 10%;">
     <div class="row pb-5">
         <div class="col-md-3 pt-4 pb-5" style="border-radius: 10px; background-color:#fff; box-shadow: 0px 0px 8px 1px rgba(166, 160, 160, 0.2);">
             <div class="text-center">
                 <img src="/img/avatar.png" alt="" style="width: 130px;">
-                {{#each usuarios}}
-                    <h5>{{nome}}</h5>
-                    <h6>{{contato}}</h6>
-                    <h6>{{email}}</h6>
-                {{else}}
-                {{/each}}
+                {{!-- {{#each usuarios}} --}}
+                    <p class="pt-3">{{usuario.nome}}</p>
+                    <p>{{usuario.contato}}</p>
+                    <p>{{usuario.email}}</p>
+                {{!-- {{else}}
+                {{/each}} --}}
                 <div class="pt-4">
                     <a href="/logout"><button class="btn btn-danger">Sair</button></a>
                 </div>
             </div>
         </div>
-        <div class="col-md-7 offset-md-1" style="position: relative; border-radius: 10px; background-color:#fff; box-shadow: 0px 0px 8px 1px rgba(200, 192, 192, 0.2);">
-            <div class="container offset-md-3 pt-5" style="margin-top: 23%;">
-                <span class="alert alert-warning" style="position: absolute;" role="alert">
-                    Sua conta ainda não possui pets cadastrados!
-                </span>
+        <div class="col-md-7 offset-md-1 pt-3 pb-4" style="border-radius: 10px; background-color:#fff; box-shadow: 0px 0px 8px 1px rgba(200, 192, 192, 0.2);">
+            <div class="container offset-md-1 mt-2">
+                <div class="row" id="conteudo-cards">
+                    {{#each pets}}
+                        <div class="col-sm-5 pt-2">
+                            <div class="card text-center">
+                            <img class="card-img-top" src={{imagem}} alt="Card image cap" height="250px" width="250px">
+                            <div class="card-body">
+                                <h5 class="card-title">{{this.nome}}, {{this.idade}}</h5>
+                                <p class="card-text">{{obs}}</p>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">{{genero}}</li>
+                                    <li class="list-group-item">{{endereco}}</li>
+                                    <li class="list-group-item">{{contato}}</li>
+                                    <li class="list-group-item">{{status}}</li>
+                                </ul>
+                            </div>
+                            </div>
+                        </div>
+                    {{else}}
+                    <div class="offset-md-2 pt-5 mt-5">
+                        <span class="alert alert-warning" role="alert">
+                            Sua conta ainda não possui pets cadastrados!
+                        </span>
+                    </div>
+                    {{/each}}
+                </div>
             </div>
         </div>
     </div>

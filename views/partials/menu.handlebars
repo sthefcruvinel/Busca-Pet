@@ -74,7 +74,7 @@
                     </div>
                 </div>
                 <div class="container ml-2">
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="/homepage/{{user}}" method="POST" enctype="multipart/form-data">
                         <div class="form-group row">
                             <div class="col-sm-10 offset-md-1">
                                 <div class="form-group row">
@@ -118,7 +118,7 @@
                                 <div class="form-group row pt-2">
                                     <label for="contatoPet" class="col-sm-5 col-form-label">Contato:</label>
                                     <div class="col-sm-7">
-                                        <input type="text" id="contatoPet" name="contatoPet" class="form-control" maxlength="15" onkeydown="return phoneMask(event)">
+                                        <input type="text" id="contatoPet" name="contatoPet" class="form-control" placeholder="Ex: (00) 0000-0000" maxlength="15" onkeydown="return phoneMask(event)">
                                     </div>
                                 </div>
                                 <div class="form-group row pt-2">
